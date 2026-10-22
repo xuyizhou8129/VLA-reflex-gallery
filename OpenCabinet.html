@@ -1,0 +1,129 @@
+<!doctype html><meta charset=utf-8><title>OpenCabinet suite</title><style>
+:root{color-scheme:dark}
+body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;background:#111;color:#ddd;margin:0;padding:16px 24px;max-width:1400px}
+a{color:#7cb7ff}h1{margin:8px 0 4px}h2{margin:32px 0 8px;border-bottom:1px solid #333;padding-bottom:4px}h3{margin:18px 0 6px}
+small,.dim{color:#999}code{background:#222;padding:1px 4px;border-radius:3px}
+video{max-width:100%;display:block;background:#000}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:18px}
+.card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:12px}
+.card h2{margin:0 0 6px;border:0;padding:0;font-size:1.1rem}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;margin:2px 4px 2px 0;background:#333}
+.chip.static{background:#444}.chip.dynamic{background:#1d4e89}.chip.nuisance{background:#5b3d8a}.chip.reactivity{background:#8a2c2c}.chip.mixed{background:#6b5a1d}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:8px 0}
+.cells{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 4px}
+.cell{flex:0 1 300px}.cell video{width:100%}.cell figcaption{font-size:.85rem;color:#bbb;margin-top:4px}
+.explain{background:#1a1a1a;border-left:3px solid #555;padding:8px 12px;margin:8px 0}
+.explain.dynamic{border-color:#1d4e89}.explain.nuisance{border-color:#5b3d8a}.explain.reactivity{border-color:#8a2c2c}
+.note{color:#e8c36a}table{border-collapse:collapse}td,th{border:1px solid #333;padding:3px 8px;text-align:left;vertical-align:top}
+.chip.gate-ok{background:#1f6b3a}.chip.gate-no{background:#8a2c2c}.chip.gate-dec{background:#6b5a1d}
+.cams{display:flex;gap:10px;flex-wrap:wrap}.cams>div{flex:1 1 300px}
+</style>
+<p><a href='index.html'>&larr; all suites</a></p><h1>OpenCabinet</h1>
+<p class=dim>Tier C. Open the cabinet door(s); the task registers the cabinet as ref &quot;fxtr&quot;. door_obj inside, 2-3 distr_counter_i.</p>
+<div class=kv>
+<b>Instruction</b><span>&ldquo;Open the cabinet door.&rdquo; <small>(seed 0, kitchen layout 1 style 1; the wording and the sampled objects change with the seed)</small></span>
+<b>Horizon</b><span>1050 ticks = 52.5 s at 20 Hz, the same for every variant</span>
+<b>Nominal time</b><span>15.88 s (tick 318): gr00t_n1.5 static sync, run 20261013-020144_gr00t-nominal-2, median of 6/10 successes; every task-relative level below is in units of it (rule 1 of the <a href='index.html#standard'>standard</a>)</span>
+<b>Kitchens</b><span>(1, 1), (2, 2), (3, 3)</span>
+<b>Seeds</b><span>10 per kitchen</span>
+<b>Roles</b><span><code>door_obj</code> = cinnamon, <code>distr_counter_1</code> = eggplant, <code>distr_counter_2</code> = bell_pepper, <code>distr_nuisance</code> = spoon (added by the suite)</span>
+<b>Keep-out</b><span><code>distr_nuisance</code> is placed at least 15 cm from <code>fxtr</code> and from the path between them (measured at store build for this seed: 32 cm)</span>
+<b>Variants</b><span><a href='#static' class='chip static'>static</a> <a href='#dynamic' class='chip dynamic'>dynamic</a> <a href='#nuisance' class='chip nuisance'>nuisance</a> <a href='#slam' class='chip reactivity'>slam</a> <a href='#knock' class='chip reactivity'>knock</a> <a href='#switch_close' class='chip reactivity'>switch_close</a></span>
+</div>
+<h2>Every cell side by side</h2>
+<p class=dim>Hold action, no policy; preview run(s) <code>20261013-051811_standard-sim-2 + 20261013-094622_standard-sim-4 + 20261020-051234_render-new-cells + 20261020-143445_render-teleport-reach</code>, 200 ticks (10 s). Grid order: static, then every speed level of each variant in YAML order, then the one-shot variants. A red border and banner mark the two seconds after a one-shot fires. Triggers that need the robot were forced to tick 60 for this preview; the text under each variant says what a trial waits for instead.</p>
+<div class=cams>
+<div><small>right agent view</small><video controls loop muted preload=metadata src='OpenCabinet_compare_k01_s0_agentview_right.mp4'></video></div>
+<div><small>left agent view</small><video controls loop muted preload=metadata src='OpenCabinet_compare_k01_s0_agentview_left.mp4'></video></div>
+<div><small>wrist camera</small><video controls loop muted preload=metadata src='OpenCabinet_compare_k01_s0_eye_in_hand.mp4'></video></div>
+</div>
+<h2 id='static'>static <span class='chip static'>static</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>The task exactly as RoboCasa365 ships it. Nothing moves on its own and nothing interrupts the robot. Every other variant starts from this same stored initial state.</p>
+<div class=cells>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_static_base_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>unchanged task</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_static_base_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_static_base_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+</div>
+<h2 id='dynamic'>dynamic <span class='chip dynamic'>dynamic</span> <span class='chip decision'>invalidates whether the destination is open · continuous</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>Something the task depends on moves in a steady, extrapolatable way from the first tick. A policy that is slow sees the target where it was, not where it is.</p>
+<div class='explain dynamic'>
+<div><b>What</b>: <code>fxtr</code> moves toward closed by 25, 50, 100 % of its range during one nominal completion (15.88 s), i.e. 0.0157, 0.0315, 0.063 of its range per second; each level is its own cell. It stops for good once the robot grasps it.</div>
+<div><b>Target</b>: <code>fxtr</code></div>
+<div><b>When</b>: every tick from the start of the trial.</div>
+</div>
+<div class=cells>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_dynamic_0.travel=-0.25_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>25 % of range per nominal (0.0157/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_dynamic_0.travel=-0.25_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_dynamic_0.travel=-0.25_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_dynamic_0.travel=-0.5_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>50 % of range per nominal (0.0315/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_dynamic_0.travel=-0.5_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_dynamic_0.travel=-0.5_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_dynamic_0.travel=-1.0_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>100 % of range per nominal (0.063/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_dynamic_0.travel=-1.0_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_dynamic_0.travel=-1.0_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+</div>
+<h2 id='nuisance'>nuisance <span class='chip nuisance'>nuisance</span> <span class='chip decision'>invalidates nothing: the nuisance control · continuous</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>The objects the task needs stay put; an added object that has nothing to do with the task moves instead. Same motion as dynamic, on a distractor, so the two variants separate &#x27;motion costs time&#x27; from &#x27;the moving thing matters&#x27;.</p>
+<div class='explain nuisance'>
+<div><b>What</b>: the added nuisance object <code>distr_nuisance</code> (spoon) slides along the counter&#x27;s x axis by 10, 20, 40 cm during one nominal completion (15.88 s), i.e. 0.63, 1.3, 2.5 cm/s; each level is its own cell. The motion is bounded: it goes out 10 cm from the start pose and comes back, over and over.</div>
+<div><b>Target</b>: the added nuisance object <code>distr_nuisance</code> (spoon)</div>
+<div><b>When</b>: every tick from the start of the trial.</div>
+</div>
+<div class=cells>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_nuisance_0.travel=0.1_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>10 cm per nominal (0.63 cm/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 9 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_nuisance_0.travel=0.1_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_nuisance_0.travel=0.1_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_nuisance_0.travel=0.2_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>20 cm per nominal (1.3 cm/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 9 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_nuisance_0.travel=0.2_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_nuisance_0.travel=0.2_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_nuisance_0.travel=0.4_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>40 cm per nominal (2.5 cm/s)</b>; <span class='chip gate-ok'>kitchen 1: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 8 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 9 seeds</span><br><small>right agent view; other views: <a href='OpenCabinet_nuisance_0.travel=0.4_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_nuisance_0.travel=0.4_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+</div>
+<h2 id='slam'>slam <span class='chip reactivity'>reactivity</span> <span class='chip decision'>invalidates whether the destination is open · one shot, while it executes</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>A one-shot event that cannot be extrapolated from what came before. It fires once, on a condition tied to the robot&#x27;s progress or to the clock, and the policy has to notice and change course.</p>
+<div class='explain reactivity'>
+<div><b>What</b>: <code>fxtr</code> snaps to 0 % of its range in one tick: a slam.</div>
+<div><b>Target</b>: <code>fxtr</code></div>
+<div><b>When</b>: once <code>fxtr</code> is between 0.4 and 1 open, fires once.</div>
+<div class=note>In this preview no policy moves the arm, so this trigger was forced to fire at tick 60 (3 s). In a trial it waits for the condition above.</div>
+</div>
+<div class=cells>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_slam_base_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>no parameters</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span>; fired at tick 60 (forced)<br><small>right agent view; other views: <a href='OpenCabinet_slam_base_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_slam_base_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+</div>
+<h2 id='knock'>knock <span class='chip reactivity'>reactivity</span> <span class='chip decision'>invalidates whether the destination is open · one shot, while it executes</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>A one-shot event that cannot be extrapolated from what came before. It fires once, on a condition tied to the robot&#x27;s progress or to the clock, and the policy has to notice and change course.</p>
+<div class='explain reactivity'>
+<div><b>What</b>: <code>fxtr</code> is knocked back toward closed by 25 % of its range in one tick; each level is its own cell.</div>
+<div><b>Target</b>: <code>fxtr</code></div>
+<div><b>When</b>: once <code>fxtr</code> is between 0.4 and 1 open, fires once.</div>
+<div class=note>In this preview no policy moves the arm, so this trigger was forced to fire at tick 60 (3 s). In a trial it waits for the condition above.</div>
+</div>
+<div class=cells>
+<figure class=cell><figcaption><b>delta = -0.25</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 9 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 9 seeds</span><br><small>no preview clip for this cell in the runs yet</small></figcaption></figure>
+</div>
+<h2 id='switch_close'>switch_close <span class='chip reactivity'>reactivity</span> <span class='chip decision'>invalidates what the goal is · one shot, while it executes</span> <span class='chip gate-ok'>task admitted (rule 6a): best reference policy pi0 80% static sync</span></h2>
+<p>A one-shot event that cannot be extrapolated from what came before. It fires once, on a condition tied to the robot&#x27;s progress or to the clock, and the policy has to notice and change course.</p>
+<div class='explain reactivity'>
+<div><b>What</b>: the instruction becomes “Close the cabinet door.” and the success check becomes: <code>fxtr</code> is closed (joint at most 0.05 of its range).</div>
+<div><b>Target</b>: the instruction</div>
+<div><b>When</b>: once <code>fxtr</code> is between 0.4 and 1 open, fires once.</div>
+<div class=note>In this preview no policy moves the arm, so this trigger was forced to fire at tick 60 (3 s). In a trial it waits for the condition above.</div>
+</div>
+<div class=cells>
+<figure class=cell>
+<video controls loop muted preload=metadata src='OpenCabinet_switch_close_base_k01_s0_agentview_right.mp4'></video>
+<figcaption><b>no parameters</b>; <span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span>; fired at tick 60 (forced); trial ended at tick 61 by <code>set_instruction</code>; switched goal already true here, but the trigger was forced under hold, so this says nothing about a trial<br><small>right agent view; other views: <a href='OpenCabinet_switch_close_base_k01_s0_agentview_left.mp4'>left agent view</a> <a href='OpenCabinet_switch_close_base_k01_s0_eye_in_hand.mp4'>wrist camera</a></small></figcaption>
+</figure>
+</div>
+<p class=dim>Generated by tools/build_suite_gallery.py from suites/OpenCabinet.yaml and run 20261013-051811_standard-sim-2 + 20261013-094622_standard-sim-4 + 20261020-051234_render-new-cells + 20261020-143445_render-teleport-reach.</p>
