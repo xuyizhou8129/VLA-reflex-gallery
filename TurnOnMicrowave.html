@@ -1,0 +1,102 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>TurnOnMicrowave suite</title><style>
+:root{color-scheme:light}
+body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;background:#ffffff;color:#1f2328;margin:0;padding:16px 24px;max-width:1400px}
+a{color:#0969da}h1{margin:8px 0 4px}h2{margin:32px 0 8px;border-bottom:1px solid #d0d7de;padding-bottom:4px}h3{margin:18px 0 6px}
+small,.dim{color:#59636e}code{background:#eff2f5;padding:1px 4px;border-radius:3px}
+video{max-width:100%;display:block;background:#000}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:18px}
+.card{background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:12px}
+.card h2{margin:0 0 6px;border:0;padding:0;font-size:1.1rem}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;margin:2px 4px 2px 0;background:#e6eaef;color:#1f2328}
+.chip.static{background:#e6eaef;color:#1f2328}.chip.dynamic{background:#ddf4ff;color:#0a3069}.chip.nuisance{background:#fbefff;color:#512a97}.chip.reactivity{background:#ffebe9;color:#82071e}.chip.mixed{background:#fff8c5;color:#633c01}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:8px 0}
+.cells{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 4px}
+.cell{flex:0 1 300px}.cell video{width:100%}.cell figcaption{font-size:.85rem;color:#59636e;margin-top:4px}
+.explain{background:#f6f8fa;border-left:3px solid #8c959f;padding:8px 12px;margin:8px 0}
+.explain.dynamic{border-color:#0969da}.explain.nuisance{border-color:#8250df}.explain.reactivity{border-color:#cf222e}
+.note{color:#9a6700}table{border-collapse:collapse}td,th{border:1px solid #d0d7de;padding:3px 8px;text-align:left;vertical-align:top}
+.chip.control{background:#fff1e5;color:#953800}
+.chip.gate-ok{background:#dafbe1;color:#116329}.chip.gate-no{background:#ffebe9;color:#82071e}.chip.gate-dec{background:#fff8c5;color:#633c01}
+.cams{display:flex;gap:10px;flex-wrap:wrap}.cams>div{flex:1 1 300px}
+.cell3{flex:1 1 100%;margin:0 0 14px;padding:8px 10px;background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;min-width:0}
+.cell3>figcaption{font-size:.9rem;color:#1f2328;margin:0 0 4px}
+.rowlabel{font-size:.85rem;color:#59636e;margin:8px 0 4px}.rowlabel small{color:#59636e}
+.views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:960px}
+h1,h2,code{overflow-wrap:anywhere}
+.views video{width:100%}.views small{display:block;color:#59636e;font-size:.78rem;margin-top:2px}
+.noview{background:#f6f8fa;border:1px dashed #d0d7de;min-height:60px;padding:6px}
+.judge{background:#f6f8fa;border:1px solid #d0d7de;border-left:3px solid #cf222e;border-radius:4px;padding:8px 12px;margin:8px 0}
+.judge.dynamic{border-left-color:#0969da}.judge.nuisance{border-left-color:#8250df}.judge.twin{border-left-color:#9a6700}
+.judge>b{display:block;margin-bottom:4px}.judge .kv{margin:4px 0}.judge .kv>b{color:#1f2328;font-weight:600}
+.judge details{margin-top:4px}.judge summary{cursor:pointer;color:#59636e;font-size:.9rem}.judge details .kv{font-size:.9rem;color:#424a53}
+.legend{background:#f6f8fa;border:1px solid #d0d7de;border-radius:4px;padding:8px 12px;margin:10px 0;max-width:1100px}
+table.vt{width:100%;margin:8px 0;font-size:.9rem}.vt td,.vt th{overflow-wrap:anywhere}.vt th{background:#f6f8fa}
+.explain>div{margin:2px 0}.explain .formerly{color:#59636e;font-size:.85rem}
+@media (max-width:720px){body{padding:12px 16px}.views{grid-template-columns:1fr}.kv{grid-template-columns:1fr}
+.vt thead{display:none}.vt tr{display:block;border:1px solid #d0d7de;border-radius:6px;margin:0 0 8px;padding:4px 8px}
+.vt td{display:block;border:0;padding:2px 0}.vt td[data-l]::before{content:attr(data-l) ": ";color:#59636e}}
+</style>
+<p><a href='index.html'>&larr; all suites</a></p><h1>TurnOnMicrowave</h1>
+<p class=dim>Tier C. Press the start button. Objects: a bowl (obj_container) with food (obj) inside the microwave; no fixture refs registered.</p>
+<div class=kv>
+<b>Instruction</b><span>&ldquo;Press the start button on the microwave.&rdquo; <small>(kitchen 1, seed 0; it varies with the seed)</small></span>
+<b>Control of</b><span>the control of <a href='WaffleReheat.html'>WaffleReheat</a> stage 4: press the microwave&#x27;s start button <small>(a label: this task also stands for that composite stage; not in the composite control group, suite-spec 1.29)</small></span>
+<b>Admission</b><span><span class='chip gate-ok'>task admitted (rule 6a): admitted in kitchens 1, 2, 3; best reference policy gr00t_n1.5 10% static sync</span> <small>rule 6b: per cell and kitchen, below</small></span>
+<b>Horizon</b><span>450 ticks (22.5 s at 20 Hz)</span>
+<b>Nominal time</b><span>11.25 s (tick 225; 0.5 x horizon: gr00t_n1.5 static sync, run 20261013-020144_gr00t-nominal-2, only 1/10 successes) <span class=note>provisional</span>: the unit of the drift levels</span>
+<b>Scenes</b><span>kitchens (1, 1), (2, 2), (3, 3) (layout, style), 10 seeds each</span>
+<b>Roles</b><span><code>obj_container</code> = plate, <code>obj</code> = carrot, <code>distr_nuisance</code> = spoon (added by the suite)</span>
+<b>Keep-out</b><span><code>distr_nuisance</code> at least 15 cm from the microwave and the path between them (96 cm on this seed)</span>
+</div>
+<table class=vt><thead><tr><th>Variant</th><th>Invalidates · form</th><th>Event, every level</th><th>Trigger</th></tr></thead><tbody><tr><td data-l='variant'><a href='#static'>static</a></td><td data-l='invalidates'>–</td><td data-l='event'>none: the task as shipped</td><td data-l='trigger'>–</td></tr><tr><td data-l='variant'><a href='#drift_distractor_continuous'>drift_distractor_continuous</a> <span class='chip nuisance'>nuisance</span></td><td data-l='invalidates'>nothing: the nuisance control · continuous</td><td data-l='event'>the added nuisance object <code>distr_nuisance</code> (spoon) drifts 10, 20 or 40 cm per nominal time</td><td data-l='trigger'>from the first tick</td></tr><tr><td data-l='variant'><a href='#switch_goal_during'>switch_goal_during</a> <span class='chip reactivity'>reactivity</span></td><td data-l='invalidates'>what the goal is · during</td><td data-l='event'>the instruction becomes “Turn the microwave off.”</td><td data-l='trigger'>the microwave&#x27;s <code>turned_on</code> is true</td></tr></tbody></table><p class=dim><span class='chip static'>static</span> the task as RoboCasa365 ships it, the stored state every variant starts from · <span class='chip nuisance'>nuisance</span> something the task does not need moves: the control for dynamic · <span class='chip reactivity'>reactivity</span> a one-shot event that invalidates a decision the policy has made</p>
+<div class=legend id=judging><b>How a cell is judged</b>: Success first (reaction-outcome.md 4.1): every cell is scored by its success, for now the only thing scored: the task&#x27;s own success check (after a goal switch, the new instruction&#x27;s), in an event cell over the trials whose event fired. An event cell is read against the static (static − event success) and, where its post-event twin is run (the same task started in the world the event leaves), against the twin (twin − event success: the reactivity cost). What kind of success it was is defined and deferred, computed but not scored: A reaction is a success with no stale action, a recovery a success after one. A stale action is a commitment (a grasp, a release, a fixture drive, a push, an agent&#x27;s declared completion) begun at least 0.25 s after the event and aimed at what the event made wrong; arm motion and holding still never count.</div>
+<h2>Every cell side by side</h2>
+<p class=dim>Hold action, no policy, kitchen 1, seed 0, 200 ticks (10 s), the cells in page order; a red border and banner mark the 2 s after a one-shot fires. Each cell below shows its three views (left, right, wrist); the π0.5 rollouts are in the private copy of this gallery only.</p>
+<div class=cams>
+<div><small>right agent view</small><video controls loop muted preload=metadata src='TurnOnMicrowave_compare_k01_s0_agentview_right.mp4'></video></div>
+<div><small>left agent view</small><video controls loop muted preload=metadata src='TurnOnMicrowave_compare_k01_s0_agentview_left.mp4'></video></div>
+<div><small>wrist camera</small><video controls loop muted preload=metadata src='TurnOnMicrowave_compare_k01_s0_eye_in_hand.mp4'></video></div>
+</div>
+<h2 id='static'>static</h2>
+<div class=cells>
+<figure class=cell3 id='static-base'><figcaption><b>The task as shipped</b><br><span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: hold action, no policy</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_static_base_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_static_base_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_static_base_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+</div>
+<h2 id='drift_distractor_continuous'>drift_distractor_continuous <span class='chip nuisance'>nuisance</span> <span class='chip decision'>invalidates nothing: the nuisance control · continuous</span></h2>
+<div class='explain nuisance'>
+<div><b>Event</b>: the added nuisance object <code>distr_nuisance</code> (spoon) drifts along +x (counter axes) by 10, 20 or 40 cm per nominal time (0.89, 1.8 or 3.6 cm/s), out to 30 cm from its start and back, over and over.</div>
+<div><b>Trigger</b>: every tick, from the first.</div>
+<div class=formerly>Formerly <code>nuisance</code>.</div>
+</div>
+<div class='judge nuisance'><b>How it is judged</b><div class=kv><b>Judged by</b><span>success alone at each level (the task&#x27;s own success check), beside the static on the same seeds. No class: nothing here invalidates a decision, so there is nothing to react to.</span><b>Over-reaction</b><span>counted per trial and reported beside the success: a grasp attempt with the hand within R_OLD 0.08 m of <code>distr_nuisance</code> (spoon), or a push of it (it moves at least D_PUSH 0.02 m while the hand or the held item is within R_HANDLE 0.05 m of it), after the motion starts.</span></div><details><summary>More</summary><div class=kv><b>Constants</b><span>R_OLD 0.08 m, R_HANDLE 0.05 m, D_PUSH 0.02 m (reaction-outcome.md 4.1 §8)</span></div></details></div>
+<div class=cells>
+<figure class=cell3 id='drift_distractor_continuous-0.travel=0.1'><figcaption><b>10 cm per nominal time</b> (0.89 cm/s) · from the first tick<br><span class='chip gate-no'>kitchen 1: infeasible: in_view, no_penetration on seeds 0, 2, 3, 6, 8, 9</span> <span class='chip gate-no'>kitchen 2: infeasible: in_view, no_penetration on seeds 0, 1, 2, 3, 4, 6, 8, 9</span> <span class='chip gate-ok'>kitchen 3: feasible on 7 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: hold action, no policy</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.1_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.1_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.1_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+<figure class=cell3 id='drift_distractor_continuous-0.travel=0.2'><figcaption><b>20 cm per nominal time</b> (1.8 cm/s) · from the first tick<br><span class='chip gate-no'>kitchen 1: infeasible: in_view, no_penetration on seeds 0, 2, 3, 6, 8, 9</span> <span class='chip gate-no'>kitchen 2: infeasible: in_view, no_penetration on seeds 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span> <span class='chip gate-ok'>kitchen 3: feasible on 7 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: hold action, no policy</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.2_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.2_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.2_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+<figure class=cell3 id='drift_distractor_continuous-0.travel=0.4'><figcaption><b>40 cm per nominal time</b> (3.6 cm/s) · from the first tick<br><span class='chip gate-no'>kitchen 1: infeasible: in_view, no_penetration on seeds 0, 2, 3, 6, 8, 9</span> <span class='chip gate-no'>kitchen 2: infeasible: in_view, no_penetration on seeds 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span> <span class='chip gate-ok'>kitchen 3: feasible on 7 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: hold action, no policy</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.4_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.4_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_drift_distractor_continuous_0.travel=0.4_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+</div>
+<h2 id='switch_goal_during'>switch_goal_during <span class='chip reactivity'>reactivity</span> <span class='chip decision'>invalidates what the goal is · one shot, while it executes</span></h2>
+<div class='explain reactivity'>
+<div><b>Event</b>: The instruction becomes “Turn the microwave off.”; success is then: the microwave&#x27;s <code>turned_on</code> is false.</div>
+<div><b>Trigger</b>: when the microwave&#x27;s <code>turned_on</code> is true; once.</div>
+<div><b>Preview</b>: no policy moves the arm, so the trigger was forced at tick 60 (3 s); a trial waits for it.</div>
+<div class=formerly>Formerly <code>switch_off</code>.</div>
+</div>
+<div class='judge reactivity'><b>How it is judged</b><div class=kv><b>Success</b><span>the new instruction&#x27;s check: the microwave has <code>turned_on</code> = false; for now the only thing scored.</span><b>Paired with</b><span>the static: static success − event success, on the same seed, policy, clock, window and kitchen. A switch changes the goal, not the world: its post-event twin <code>twin_switch_goal_during</code> is derived but not run, so no reactivity cost is read for this cell.</span></div><details><summary>The reaction / recovery split: defined, deferred (not scored for now)</summary><div class=kv><b>Reaction</b><span>defined, deferred: a success with no stale action.</span><b>Recovery</b><span>defined, deferred: none in this cell: its only stale action, a false declared completion, ends the trial as a failure, so no success follows a stale action and every success is a reaction.</span><b>Stale action 1 (declare_done)</b><span>an agent loop declaring the task done (<code>finish</code> with status success) begun at least GRACE 5 ticks (0.25 s) after the switch while the goal is not met; the declaration ends the trial, so it marks a failure only, never a recovery (a VLA never declares).</span><b>Not judged</b><span>a commitment begun earlier than GRACE 5 ticks (0.25 s) after the switch: it could not have been a choice; arm motion of any kind (reaching, carrying, hovering, moving toward the old place and turning back) and holding still: only grasps, releases, fixture drives, pushes and an agent&#x27;s declared completion are commitments, and gripper flips closer together than W_CHATTER 10 ticks are one commitment, or none when they end where they began; how long the reaction took: the latency and the event cost are reported beside, never judged.</span><b>Note</b><span>A VLA never declares completion, so for a VLA this cell has no stale action at all: every success is a reaction and every failure is failed_other.</span><b>Failures</b><span>a trial whose event never fired is event_not_reached, left out of the success and of every share; the failures&#x27; split, defined and deferred, is into failed_after_stale (a stale action, then failure) and failed_other (any other failure).</span><b>Constants</b><span>GRACE 5 ticks (0.25 s), W_CHATTER 10 ticks (0.5 s) (reaction-outcome.md 4.1 §8)</span></div></details></div>
+<div class=cells>
+<figure class=cell3 id='switch_goal_during-base'><figcaption><b>“Turn the microwave off.”</b> · trigger: the microwave&#x27;s <code>turned_on</code> is true<br><span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: fired at tick 60 (forced); the new goal already held under the hold action, so the clip's trial ended at tick 61 (no bearing on a trial)</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_switch_goal_during_base_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_switch_goal_during_base_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='TurnOnMicrowave_switch_goal_during_base_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+</div>
+<p class=dim>Generated by tools/build_suite_gallery.py from suites/TurnOnMicrowave.yaml and preview run(s) 20261025-171800_render-gallery-1025 + 20261026-011227_render-rename + 20261026-224223_render-composite-cpu + 20261027-134759_render-composite-1027-cpu + 20261027-152119_render-clean-seed-cpu + 20261027-210100_render-cts-board-cpu + 20261027-215306_render-waffle-weigh-cpu + 20261028-002029_render-weigh-seed1-cpu + 20261028-152636_render-sbc-restaged-cpu + 20261028-180623_render-sbc-during-cpu + 20261028-190754_render-waffle-latch-cpu + 20261028-213710_ctrl-render-cpu.</p>

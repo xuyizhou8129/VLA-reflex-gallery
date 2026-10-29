@@ -1,0 +1,58 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>CloseMicrowave suite</title><style>
+:root{color-scheme:light}
+body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;background:#ffffff;color:#1f2328;margin:0;padding:16px 24px;max-width:1400px}
+a{color:#0969da}h1{margin:8px 0 4px}h2{margin:32px 0 8px;border-bottom:1px solid #d0d7de;padding-bottom:4px}h3{margin:18px 0 6px}
+small,.dim{color:#59636e}code{background:#eff2f5;padding:1px 4px;border-radius:3px}
+video{max-width:100%;display:block;background:#000}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:18px}
+.card{background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:12px}
+.card h2{margin:0 0 6px;border:0;padding:0;font-size:1.1rem}
+.chip{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.8rem;margin:2px 4px 2px 0;background:#e6eaef;color:#1f2328}
+.chip.static{background:#e6eaef;color:#1f2328}.chip.dynamic{background:#ddf4ff;color:#0a3069}.chip.nuisance{background:#fbefff;color:#512a97}.chip.reactivity{background:#ffebe9;color:#82071e}.chip.mixed{background:#fff8c5;color:#633c01}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:8px 0}
+.cells{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 4px}
+.cell{flex:0 1 300px}.cell video{width:100%}.cell figcaption{font-size:.85rem;color:#59636e;margin-top:4px}
+.explain{background:#f6f8fa;border-left:3px solid #8c959f;padding:8px 12px;margin:8px 0}
+.explain.dynamic{border-color:#0969da}.explain.nuisance{border-color:#8250df}.explain.reactivity{border-color:#cf222e}
+.note{color:#9a6700}table{border-collapse:collapse}td,th{border:1px solid #d0d7de;padding:3px 8px;text-align:left;vertical-align:top}
+.chip.control{background:#fff1e5;color:#953800}
+.chip.gate-ok{background:#dafbe1;color:#116329}.chip.gate-no{background:#ffebe9;color:#82071e}.chip.gate-dec{background:#fff8c5;color:#633c01}
+.cams{display:flex;gap:10px;flex-wrap:wrap}.cams>div{flex:1 1 300px}
+.cell3{flex:1 1 100%;margin:0 0 14px;padding:8px 10px;background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;min-width:0}
+.cell3>figcaption{font-size:.9rem;color:#1f2328;margin:0 0 4px}
+.rowlabel{font-size:.85rem;color:#59636e;margin:8px 0 4px}.rowlabel small{color:#59636e}
+.views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:960px}
+h1,h2,code{overflow-wrap:anywhere}
+.views video{width:100%}.views small{display:block;color:#59636e;font-size:.78rem;margin-top:2px}
+.noview{background:#f6f8fa;border:1px dashed #d0d7de;min-height:60px;padding:6px}
+.judge{background:#f6f8fa;border:1px solid #d0d7de;border-left:3px solid #cf222e;border-radius:4px;padding:8px 12px;margin:8px 0}
+.judge.dynamic{border-left-color:#0969da}.judge.nuisance{border-left-color:#8250df}.judge.twin{border-left-color:#9a6700}
+.judge>b{display:block;margin-bottom:4px}.judge .kv{margin:4px 0}.judge .kv>b{color:#1f2328;font-weight:600}
+.judge details{margin-top:4px}.judge summary{cursor:pointer;color:#59636e;font-size:.9rem}.judge details .kv{font-size:.9rem;color:#424a53}
+.legend{background:#f6f8fa;border:1px solid #d0d7de;border-radius:4px;padding:8px 12px;margin:10px 0;max-width:1100px}
+table.vt{width:100%;margin:8px 0;font-size:.9rem}.vt td,.vt th{overflow-wrap:anywhere}.vt th{background:#f6f8fa}
+.explain>div{margin:2px 0}.explain .formerly{color:#59636e;font-size:.85rem}
+@media (max-width:720px){body{padding:12px 16px}.views{grid-template-columns:1fr}.kv{grid-template-columns:1fr}
+.vt thead{display:none}.vt tr{display:block;border:1px solid #d0d7de;border-radius:6px;margin:0 0 8px;padding:4px 8px}
+.vt td{display:block;border:0;padding:2px 0}.vt td[data-l]::before{content:attr(data-l) ": ";color:#59636e}}
+</style>
+<p><a href='index.html'>&larr; all suites</a></p><h1>CloseMicrowave</h1>
+<p class=dim>The composite control group: an atomic benchmark task, the control of</p>
+<div class=kv>
+<b>Instruction</b><span>&ldquo;Close the microwave door.&rdquo; <small>(kitchen 1, seed 0; it varies with the seed)</small></span>
+<b>Control group</b><span>the control of <a href='WaffleReheat.html'>WaffleReheat</a> stage 3: close the microwave door <small>(the composite control group: the same skill alone, to read the composite's failures there against)</small></span>
+<b>Admission</b><span><span class='chip gate-ok'>task admitted (rule 6a): admitted in kitchens 1, 2, 3; E5 waived (the composite control group)</span> <small>rule 6b: per cell and kitchen, below</small></span>
+<b>Horizon</b><span>450 ticks (22.5 s at 20 Hz)</span>
+<b>Nominal time</b><span>11.25 s (tick 225; 0.5 x horizon: no reference run yet) <span class=note>provisional</span></span>
+<b>Scenes</b><span>kitchens (1, 1), (2, 2), (3, 3) (layout, style), 10 seeds each</span>
+<b>Roles</b><span><code>door_obj</code> = glass_cup, <code>distr_counter_1</code> = water_bottle</span>
+</div>
+<p class=dim>The π0.5 rollouts are in the private copy of this gallery only.</p>
+<h2 id='static'>static</h2>
+<div class=cells>
+<figure class=cell3 id='static-base'><figcaption><b>The task as shipped</b><br><span class='chip gate-ok'>kitchen 1: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 2: feasible on 10 seeds</span> <span class='chip gate-ok'>kitchen 3: feasible on 10 seeds</span></figcaption>
+<div class=rowlabel><b>Preview</b>: hold action, no policy</div>
+<div class=views><div><video controls loop muted playsinline preload=metadata src='CloseMicrowave_static_base_k01_s0_agentview_left.mp4'></video><small>left agent view</small></div><div><video controls loop muted playsinline preload=metadata src='CloseMicrowave_static_base_k01_s0_agentview_right.mp4'></video><small>right agent view</small></div><div><video controls loop muted playsinline preload=metadata src='CloseMicrowave_static_base_k01_s0_eye_in_hand.mp4'></video><small>wrist camera</small></div></div>
+</figure>
+</div>
+<p class=dim>Generated by tools/build_suite_gallery.py from suites/CloseMicrowave.yaml and preview run(s) 20261025-171800_render-gallery-1025 + 20261026-011227_render-rename + 20261026-224223_render-composite-cpu + 20261027-134759_render-composite-1027-cpu + 20261027-152119_render-clean-seed-cpu + 20261027-210100_render-cts-board-cpu + 20261027-215306_render-waffle-weigh-cpu + 20261028-002029_render-weigh-seed1-cpu + 20261028-152636_render-sbc-restaged-cpu + 20261028-180623_render-sbc-during-cpu + 20261028-190754_render-waffle-latch-cpu + 20261028-213710_ctrl-render-cpu.</p>
